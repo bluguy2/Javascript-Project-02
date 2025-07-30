@@ -1,6 +1,4 @@
-const comptuterInput1 = 'rock';
-const comptuterInput2 = 'scissors';
-const comptuterInput3 = 'paper';
+const comptuterInputs = ["rock", "scissors", "paper"];
 
 let computerChoice = undefined;
 
@@ -8,11 +6,11 @@ function computerPlay() {
     let getNumber = Math.floor(Math.random() * 3)
 
     switch (getNumber) {
-        case 0: computerChoice = comptuterInput1;
+        case 0: computerChoice = comptuterInputs[0];
             break
-        case 1: computerChoice = comptuterInput2;
+        case 1: computerChoice = comptuterInputs[1];
             break
-        case 2: computerChoice = comptuterInput3;
+        case 2: computerChoice = comptuterInputs[2];
     }
     return computerChoice;
 }
@@ -21,8 +19,20 @@ function computerPlay() {
 function getPlayerSelection() {
     let playerSelection;
     while (true) {
-        playerSelection = prompt("Choose rock, paper, or scissors:").toLowerCase();
-        if (playerSelection === comptuterInput1 || playerSelection === comptuterInput2 || playerSelection === comptuterInput3) {
+        playerSelection = prompt("Choose rock, paper, or scissors:");
+
+        if (playerSelection === null) {
+            alert("Oops! You've lost your chance.");
+            return null;
+        }
+
+        playerSelection = playerSelection.toLowerCase();
+
+        if (
+            playerSelection === comptuterInputs[0] ||
+            playerSelection === comptuterInputs[1] ||
+            playerSelection === comptuterInputs[2]
+        ) {
             return playerSelection;
         } else {
             alert("No cheating! Please enter rock, paper, or scissors.");
@@ -37,28 +47,62 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
         console.log("It's a tie!");
+        return "tie"
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "scissors" && computerSelection === "paper") ||
         (playerSelection === "paper" && computerSelection === "rock")
     ) {
         console.log("Player wins!");
+        return "player"
     } else {
         console.log("Computer wins!");
+        return "computer"
     }
 }
 
 function game() {
-
+    let playerScore = 0;
+    let computerScore = 0;
+    let roundsPlayed = 0
+    
     for (let i = 0; i < 5; i++) {
 
         const playerSelection = getPlayerSelection();
+
+        if (playerSelection === null) {
+            alert("Game canceled by the player. Computer wins");
+            break;
+        }
+
         const computerSelection = computerPlay();
 
-        playRound(playerSelection, computerSelection);
-        // logic if player will want to cancel a game
+        const score = playRound(playerSelection, computerSelection);
+
+        if (score === "player") {
+            playerScore++
+        }
+        else if (score === "computer") {
+            computerScore++
+        }
+
+        roundsPlayed++;
+        console.log(`Score: Player ${playerScore} - Computer ${computerScore}`);
     }
-    // score part
+
+    //Final result
+    if (roundsPlayed > 0) {
+        console.log(`Final Score: Player ${playerScore} - Computer ${computerScore}`);
+        if (playerScore > computerScore) {
+            console.log("Player wins the game!");
+        } else if (computerScore > playerScore) {
+            console.log("Computer wins the game!");
+        } else {
+            console.log("It's a tie game!");
+        }
+    } else {
+        console.log("No rounds played.");
+    }
 }
 
-game();
+// game();
