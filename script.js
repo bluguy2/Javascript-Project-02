@@ -75,7 +75,7 @@ function game() {
         }
         
         const score = playRound(playerSelection, computerSelection);
-        
+
         if (score === "player") {
             playerScore++
         }
@@ -109,4 +109,4 @@ function game() {
     }
 }
 
-game();
+// game();
