@@ -1,4 +1,4 @@
-const comptuterInputs = ["rock", "scissors", "paper"];
+const computerInputs = ["rock", "scissors", "paper"];
 
 let computerChoice = undefined;
 
@@ -6,11 +6,11 @@ function computerPlay() {
     let getNumber = Math.floor(Math.random() * 3)
 
     switch (getNumber) {
-        case 0: computerChoice = comptuterInputs[0];
+        case 0: computerChoice = computerInputs[0];
             break
-        case 1: computerChoice = comptuterInputs[1];
+        case 1: computerChoice = computerInputs[1];
             break
-        case 2: computerChoice = comptuterInputs[2];
+        case 2: computerChoice = computerInputs[2];
     }
     return computerChoice;
 }
@@ -28,9 +28,9 @@ function getPlayerSelection() {
         playerSelection = playerSelection.toLowerCase();
 
         if (
-            playerSelection === comptuterInputs[0] ||
-            playerSelection === comptuterInputs[1] ||
-            playerSelection === comptuterInputs[2]
+            playerSelection === computerInputs[0] ||
+            playerSelection === computerInputs[1] ||
+            playerSelection === computerInputs[2]
         ) {
             return playerSelection;
         } else {
