@@ -22,7 +22,6 @@ function getPlayerSelection() {
         playerSelection = prompt("Choose rock, paper, or scissors:");
 
         if (playerSelection === null) {
-            alert("Oops! You've lost your chance.");
             return null;
         }
 
@@ -47,7 +46,6 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
         console.log("It's a tie!");
-        return "tie"
     } else if (
         (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "scissors" && computerSelection === "paper") ||
@@ -65,20 +63,19 @@ function game() {
     let playerScore = 0;
     let computerScore = 0;
     let roundsPlayed = 0
-    
+
     for (let i = 0; i < 5; i++) {
 
         const playerSelection = getPlayerSelection();
-
+        const computerSelection = computerPlay();
+        
         if (playerSelection === null) {
-            alert("Game canceled by the player. Computer wins");
+            alert("Game canceled by the player.");
             break;
         }
-
-        const computerSelection = computerPlay();
-
+        
         const score = playRound(playerSelection, computerSelection);
-
+        
         if (score === "player") {
             playerScore++
         }
@@ -86,18 +83,25 @@ function game() {
             computerScore++
         }
 
+        
+
         roundsPlayed++;
+        alert(`Score: Player ${playerScore} - Computer ${computerScore}`);
         console.log(`Score: Player ${playerScore} - Computer ${computerScore}`);
     }
 
     //Final result
     if (roundsPlayed > 0) {
+        alert(`Final Score: Player ${playerScore} - Computer ${computerScore}`);
         console.log(`Final Score: Player ${playerScore} - Computer ${computerScore}`);
         if (playerScore > computerScore) {
+            alert("Player wins the game!");
             console.log("Player wins the game!");
         } else if (computerScore > playerScore) {
+            alert("Computer wins the game!");
             console.log("Computer wins the game!");
         } else {
+            alert("It's a tie game!");
             console.log("It's a tie game!");
         }
     } else {
