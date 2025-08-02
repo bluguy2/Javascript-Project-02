@@ -72,6 +72,7 @@ function game() {
       "2. Each round, choose either rock, paper, or scissors.\n" +
       "3. Rock beats scissors, scissors beat paper, and paper beats rock.\n" +
       "4. If both choose the same option, it's a tie.\n\n" +
+      "5. The score will show after all attempts have been completed" +
       "The game will keep track of your score. Good luck!"
   );
 
